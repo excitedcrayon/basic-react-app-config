@@ -97,7 +97,7 @@ The ```<div>``` component with the id selector **root** will serve as the Root c
 
     ReactDOM.render(<App />, document.getElementById('root'));
 ```
-index.js loads the App component into the Root component
+- index.js loads the App component into the Root component
 
 ## App.js
 ```javascript
@@ -117,7 +117,8 @@ index.js loads the App component into the Root component
     // when you are using the react-hot-loader dependency, otherwise comment out this line
     export default hot(module)(App);
 ```
-App.js is using JSX.
+- App.js is using JSX.
+- Hot Loader is used reload the server when changes are saved.
 
 ## App.css
 ```css
@@ -128,3 +129,86 @@ App.js is using JSX.
     }
 ```
 Basic styling for the App component
+
+## Configure Babel and Webpack for deployment
+
+In the file .babelrc, insert the following config;
+
+```javascript
+    {
+        "presets":["@babel/preset-env","@babel/preset-react"]
+    }
+```
+Create a webpack.config.js file and add the following configuration;
+```
+    touch webpack.config.js
+```
+```javascript
+    const path = require('path');
+    const webpack = require('webpack');
+
+    module.exports = {
+        entry: './src/index.js',
+        mode: 'development',
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    exclude: path.resolve(__dirname, 'node_modules/'),
+                    loader: 'babel-loader',
+                    options: { presets: ["@babel/env"] }
+                },
+                {
+                    test: /\.css$/,
+                    use: ["style-loader","css-loader"]
+                }
+            ]
+        },
+        resolve: { extensions: ['*','.js','.jsx'] },
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            publicPath: '/dist/',
+            filename: 'bundle.js'
+        },
+        devServer: {
+            contentBase: path.join(__dirname, '/public'),
+            port: 3000,
+            publicPath: 'http://localhost:3000/dist/',
+            hotOnly: true
+        },
+        plugins: [new webpack.HotModuleReplacementPlugin()]
+    };
+```
+- The test rules in the module object i.e ```test: /\.(js|jsx)$/,``` and ```test: /\.css$/``` are using regex to target javascript, react jsx and css files for the components
+
+## Final Steps
+
+To deploy and serve the app, add the following attributes to the **package.json** file.
+```javascript
+    "scripts": {
+        "start": "webpack-cli serve --mode development",
+        "build": "webpack --mode development"
+    }
+```
+- Serve the app by running ```npm start``` in the terminal.
+- Build the app using webpack to get ```bundle.js``` to get the ```/dist/bundle.js``` in the root folder.
+- When you are running webpack and hot-loader, the dist folder is built and purged from memory. You can only see the folder only when you build using webpack.
+
+## Misc
+If your **package.json** file is not updated by the time you reach the end of this documentation, just execute the command below to update the file
+```
+    npm init -y
+```
+
+## Visual Output
+- Server the app via terminal
+![npm start](img/npm-start.png)
+- View the app in a browser
+![localhost 3000](img/localhost-3000.png)
+
+## Enviroment setup
+- Ubuntu 20+
+- Visual Studio Code
+- npm -version 7.20.5 
+
+PS - Do not forget to add **node_modules** to **.gitignore**.
