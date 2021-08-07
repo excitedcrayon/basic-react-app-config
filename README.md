@@ -11,7 +11,7 @@ File | Purpose
 index.html | renders the view to the client
 ES6 Support | modern JS syntax. This is done through Babel compiler
 Webpack | build apps, css modules for styling and serve the app during development
-Root Component | root component that holds all the other components (<div id="root"></div>). Root component is defined in index.html
+Root Component | root component that holds all the other components ```(<div id="root"></div>)```. Root component is defined in index.html
 
 ## Basic React Structure
 ```tree
@@ -30,7 +30,7 @@ Root Component | root component that holds all the other components (<div id="ro
 ```
 
 ## Create base folders and files
-Start by creating the npm package.json file
+Start by creating the npm package.json file in the root folder
 ```
    npm init -y
 ```
@@ -64,3 +64,24 @@ Babel                | npm install --save-dev @babel/core @babel/cli @babel/pres
 React and ReactDOM   | npm install react react-dom
 Webpack              | npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader
 React-Hot-Loader     | npm install --save-dev react-hot-loader
+
+## Index.html
+```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,   shrink-to-fit=no">
+        <title>Basic App</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <noscript>
+            Please enable JavaScript to view the site
+        </noscript>
+        <script src="../dist/bundle.js"></script>
+    </body>
+    </html>
+```
+The div component with the id selector _root_ will serve as the Root component.
