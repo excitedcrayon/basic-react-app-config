@@ -11,7 +11,7 @@ File | Purpose
 index.html | renders the view to the client
 ES6 Support | modern JS syntax. This is done through Babel compiler
 Webpack | build apps, css modules for styling and serve the app during development
-Root Component | root component that holds all the other components ```(<div id="root"></div>)```. Root component is defined in index.html
+Root Component | root component that holds all the other components ```(<div id="root"></div>)```. Root component is defined in **index.html**
 
 ## Basic React Structure
 ```tree
@@ -65,6 +65,8 @@ React and ReactDOM   | npm install react react-dom
 Webpack              | npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader
 React-Hot-Loader     | npm install --save-dev react-hot-loader
 
+### Setup files and content
+
 ## Index.html
 ```html
     <!DOCTYPE html>
@@ -84,4 +86,45 @@ React-Hot-Loader     | npm install --save-dev react-hot-loader
     </body>
     </html>
 ```
-The div component with the id selector _root_ will serve as the Root component.
+The ```<div>``` component with the id selector **root** will serve as the Root component.
+```<script src="../dist/bundle.js"></script>``` is for the bundle.js file that is built using webpack.
+
+## index.js
+```javascript
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import App from './App.js';
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+```
+index.js loads the App component into the Root component
+
+## App.js
+```javascript
+    import React from 'react';
+    import { hot } from 'react-hot-loader';
+    import './App.css';
+
+    const App = () => (
+        <div className="App">
+            <h1>Hello React App</h1>
+        </div>
+    );
+
+    // default statement when exporting module without hot-loader
+    // export default App;
+
+    // when you are using the react-hot-loader dependency, otherwise comment out this line
+    export default hot(module)(App);
+```
+App.js is using JSX.
+
+## App.css
+```css
+    .App{
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1;
+        color: #222;
+    }
+```
+Basic styling for the App component
