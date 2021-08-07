@@ -119,7 +119,7 @@ The ```<div>``` component with the id selector **root** will serve as the Root c
     export default hot(module)(App);
 ```
 - App.js is using JSX.
-- Hot Loader is used reload the server when changes are saved.
+- Hot Loader is used to reload the server automatically when changes are saved.
 
 ## App.css
 ```css
