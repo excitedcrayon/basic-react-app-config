@@ -3,6 +3,7 @@ This serves as a guide to creating a barebones React.js app without boilerplate 
 
 ## Dependency packages used
 - webpack
+- babel
 - react-Hot-Loader
 
 ## Guide to creating an app without boilerplate code
