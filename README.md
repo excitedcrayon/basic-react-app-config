@@ -14,16 +14,19 @@ Webpack | build apps, css modules for styling and serve the app during developme
 Root Component | root component that holds all the other components (<div id="root"></div>). Root component is defined in index.html
 
 ## Basic React Structure
-public/
-public/index.html
-src/
-src/App.css
-src/App.js
-src/index.js
-.babelrc
-package-lock.json
-package.json
-webpack.config.js
+```tree
+    ├── node_modules
+    ├── package.json
+    ├── package-lock.json
+    ├── public
+    │   └── index.html
+    ├── README.md
+    ├── src
+    │   ├── App.css
+    │   ├── App.js
+    │   └── index.js
+    └── webpack.config.js
+```
 
 ## Create base folders and files
 The base folders and files are;
