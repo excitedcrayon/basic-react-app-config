@@ -15,6 +15,7 @@ Root Component | root component that holds all the other components (<div id="ro
 
 ## Basic React Structure
 ```tree
+    ├── .babelrc
     ├── node_modules
     ├── package.json
     ├── package-lock.json
@@ -29,6 +30,11 @@ Root Component | root component that holds all the other components (<div id="ro
 ```
 
 ## Create base folders and files
+Start by creating the npm package.json file
+```
+   npm init -y
+```
+
 The base folders and files are;
 * public
 ```
@@ -46,8 +52,15 @@ The base folders and files are;
 ```
    touch src/index.js
 ```
+* .babelrc
+```
+   touch .babelrc
+```
 
-## Install Babel package
-```
-  npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/preset-react
-```
+## Install the required packages
+Package Dependencies | Command Line Argument
+-------------------- | ---------------------
+Babel                | npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/preset-react
+React and ReactDOM   | npm install react react-dom
+Webpack              | npm install --save-dev webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader
+React-Hot-Loader     | npm install --save-dev react-hot-loader
